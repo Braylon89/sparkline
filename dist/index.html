@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100e16">
+  <meta name="description" content="Catch a different frequency. Generate original late-night synth beats, shape your sound, and download a full stereo WAV.">
+  <title>Sparkline — Catch a different frequency</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23120d1e'/%3E%3Cpath d='M50 8L60 40L92 50L60 60L50 92L40 60L8 50L40 40Z' fill='%23f6a4e5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Sparkline home"><span class="brand-star">✦</span> sparkline<span class="brand-dot">®</span></a>
+    <nav aria-label="Main navigation"><a href="#studio" class="nav-active">Beat station</a><button id="library-open">Your collection <span id="saved-count">0</span></button></nav>
+    <span class="header-note"><i></i> ALWAYS A DIFFERENT FREQUENCY</span>
+  </header>
+  <main id="studio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true"><div class="subway-train"></div><div class="platform-tint"></div></div>
+      <div class="hero-topline"><span><span class="route-icon">S</span> THE AFTERHOURS EXPRESS</span><button id="motion-toggle" aria-pressed="true" aria-label="Pause subway animation">NYC ↗ OUTER SPACE <span>Ⅱ</span></button></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE SOUL. A LOT OF STARDUST.</p>
+          <h1 id="hero-title">Your next beat<br>is <em>out there.</em></h1>
+          <p class="hero-description">Dreamy synths. Subway soul. One cosmic button.<br>Make something that’s never existed before.</p>
+          <div class="vibe-label"><span>01 / PICK YOUR FREQUENCY</span><span>OR FOLLOW THE FEELING</span></div>
+          <div class="vibe-switch" role="group" aria-label="Beat mood">
+            <button class="vibe selected" data-vibe="haze" aria-pressed="true"><span>✳</span><strong>Hazy indie</strong><small>Eyedress energy</small></button>
+            <button class="vibe" data-vibe="ocean" aria-pressed="false"><span>≋</span><strong>Night swim</strong><small>Frank Ocean energy</small></button>
+            <button class="vibe" data-vibe="soul" aria-pressed="false"><span>☼</span><strong>Velvet soul</strong><small>Solange energy</small></button>
+          </div>
+          <div class="length-row"><span>TAKE THE LONG WAY HOME</span><div class="length-switch" role="group" aria-label="Beat length"><button data-duration="120" aria-pressed="false">2:00</button><button class="selected" data-duration="150" aria-pressed="true">2:30</button><button data-duration="180" aria-pressed="false">3:00</button></div></div>
+        </div>
+        <div class="portal-area">
+          <span class="portal-coordinate">40°43′ N · SOMEWHERE ELSE</span>
+          <div class="orbit-system">
+            <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+            <span class="orbit-star star-one" aria-hidden="true">✦</span><span class="orbit-star star-two" aria-hidden="true">✧</span><span class="orbit-star star-three" aria-hidden="true">✦</span>
+            <button id="generate" class="portal-button" aria-label="Generate and play a new beat"><span class="portal-shine" aria-hidden="true"></span><span class="portal-symbol" aria-hidden="true">✦</span><span id="generate-label">Make a beat</span><small id="generate-sub">PRESS TO ENTER A NEW ORBIT</small></button>
+          </div>
+          <p class="portal-note"><i></i> Original every time. Yours to explore.</p>
+        </div>
+      </div>
+      <div class="hero-bottom"><span>NO SAMPLES. ALL SYNTHS. ALL YOURS.</span><span>✦ &nbsp; PINK NOISE, PURPLE SKIES &nbsp; ✦</span><span>EST. AFTER MIDNIGHT</span></div>
+    </section>
+    <section class="console" aria-label="Beat player and editor">
+      <div class="console-heading"><div><span class="section-number">02</span><h2>Your little universe</h2><span class="console-tag">LIVE STUDIO</span></div><button id="toggle-editor" aria-expanded="true">Shape the sound <span>↘</span></button></div>
+      <div class="player">
+        <div class="cover-art"><span>✦</span><small id="cover-id">SIDE A</small></div>
+        <div class="track-info"><p id="track-kicker">WAITING FOR A FREQUENCY</p><h3 id="track-title">A new world in one click.</h3><div class="track-meta" id="track-meta"><span>Original synth instrumentals</span><span>2–3 minutes</span></div></div>
+        <div class="player-actions"><button id="favorite" class="icon-button" aria-label="Save this beat to your collection" disabled>♡</button><button id="download" class="download-button" disabled><span>↓</span><span id="download-label">Download WAV</span></button></div>
+      </div>
+      <div class="transport"><button id="play" class="play-button" aria-label="Play beat" disabled>▶</button><span id="current-time">0:00</span><div class="timeline"><canvas id="visualizer" aria-label="Live audio visualizer"></canvas><input id="seek" type="range" min="0" max="150" value="0" step="0.1" aria-label="Playback position" disabled></div><span id="total-time">2:30</span><label class="master-volume"><span aria-hidden="true">◖))</span><input id="master" type="range" min="0" max="100" value="75" aria-label="Master volume"></label></div>
+      <div id="editor" class="editor"><div class="mixer-head"><span>THE MIX / MAKE IT YOURS</span><span>CHANGES ARE INCLUDED IN YOUR WAV</span></div>
+        <div class="mixer-tracks">
+          <div class="mixer-track" data-track="0"><span class="track-color pink"></span><div><strong>Cloud keys</strong><small>Soft chords & analog warmth</small></div><button class="mute" aria-label="Mute Cloud keys" aria-pressed="false" disabled>ON</button><input class="track-volume" type="range" min="0" max="100" value="80" aria-label="Cloud keys volume" disabled><output>80%</output></div>
+          <div class="mixer-track" data-track="1"><span class="track-color purple"></span><div><strong>Low gravity</strong><small>A round, warm synth bass</small></div><button class="mute" aria-label="Mute Low gravity" aria-pressed="false" disabled>ON</button><input class="track-volume" type="range" min="0" max="100" value="80" aria-label="Low gravity volume" disabled><output>80%</output></div>
+          <div class="mixer-track" data-track="2"><span class="track-color peach"></span><div><strong>Platform drums</strong><small>Dusty kicks & offbeat pockets</small></div><button class="mute" aria-label="Mute Platform drums" aria-pressed="false" disabled>ON</button><input class="track-volume" type="range" min="0" max="100" value="82" aria-label="Platform drums volume" disabled><output>82%</output></div>
+          <div class="mixer-track" data-track="3"><span class="track-color blue"></span><div><strong>Star signals</strong><small>Shimmering, floating melodies</small></div><button class="mute" aria-label="Mute Star signals" aria-pressed="false" disabled>ON</button><input class="track-volume" type="range" min="0" max="100" value="65" aria-label="Star signals volume" disabled><output>65%</output></div>
+        </div>
+        <div class="effects"><label><span>TEMPO <output id="bpm-value">— BPM</output></span><input id="tempo" type="range" min="65" max="115" value="85" aria-label="Tempo" disabled><small>A slower stroll or a faster ride</small></label><label><span>WARMTH <output id="warmth-value">55%</output></span><input id="warmth" type="range" min="0" max="100" value="55" aria-label="Warmth" disabled><small>From crisp glass to soft velvet</small></label><label><span>SPACE <output id="space-value">40%</output></span><input id="space" type="range" min="0" max="100" value="40" aria-label="Reverb space" disabled><small>Let the room become a galaxy</small></label><button id="shuffle" disabled><span>✧</span> New melody<small>Keep the groove. Change the stars.</small></button></div>
+      </div>
+      <div class="console-footer"><span id="status" role="status" aria-live="polite">Choose a mood, then tap the glowing button.</span><span class="file-spec">STEREO · 44.1 kHz · 16-BIT WAV</span></div>
+    </section>
+    <section class="station-note"><div class="note-image" role="img" aria-label="A pink nebula at the end of a New York subway platform"></div><div><p class="eyebrow">SOMEWHERE BETWEEN THE CITY & THE COSMOS</p><h2>Miss your stop.<br><em>Find your sound.</em></h2><p>Fresh chords, fresh melodies, a different little world.<br>Keep the ones you love. Let the rest drift away.</p></div><span class="note-star" aria-hidden="true">✳</span></section>
+  </main>
+  <footer><a class="brand" href="#">✦ sparkline</a><p>Made for the headphones-on, world-off hours.</p><span>NYC SOUL. COSMIC POSSIBILITIES.</span></footer>
+  <dialog id="library"><div class="dialog-heading"><div><p class="eyebrow">FREQUENCIES YOU KEPT</p><h2>Your collection</h2></div><button id="library-close" class="icon-button" aria-label="Close collection">×</button></div><div id="library-list"></div><p class="library-footnote">Saved in this browser. Download a WAV to keep your music anywhere.</p></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
