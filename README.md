@@ -32,6 +32,6 @@ Open `http://localhost:8080`. Audio starts after a button click. Use a modern br
 
 ## Hosting
 
-Deploy `dist` to any static web host. For GitHub Pages, a Pages Actions workflow can upload `dist` as the static artifact after you enable Pages. No secret configuration is needed. The initial GitHub repository and Sites deployment are private.
+Deploy `dist` to any static web host. For GitHub Pages, enable deployment from the `main` branch and `/(root)` folder. The root index redirects to the studio in `dist`, and `.nojekyll` enables direct static serving. No secret configuration is needed. Public Pages hosting on this account requires a public repository.
 
 Collections are stored in localStorage on the current browser and origin. Download a WAV before clearing browser data. Export snapshots your current settings when you click Download; the master-volume setting is included.
