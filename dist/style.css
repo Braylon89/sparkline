@@ -8,3 +8,10 @@
 body.motion-paused .subway-train{animation-play-state:paused}
 @media(max-width:600px){#motion-toggle{font-size:6px;letter-spacing:1px}}
 @media(prefers-reduced-motion:reduce){.subway-train{transform:none;opacity:.8;will-change:auto}}
+/* Four distinct frequencies stay readable on a narrow screen. */
+.vibe-switch{max-width:510px}.vibe-label{max-width:510px}.vibe[data-vibe=ghost]>span{font-size:24px;line-height:20px}.vibe[data-vibe=ghost].selected{background:#443755a6;border-color:#bf9bf0}
+@media(max-width:800px){.vibe-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.vibe{width:100%}.vibe strong{font-size:11px}.vibe small{font-size:8px}}
+/* A six-frequency bank with room for readable artist/mood references. */
+.vibe-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:510px}.vibe{width:100%}.vibe small{font-size:8px}.mixer-track>div{min-width:0}.mixer-track small{line-height:1.4}
+.vibe[data-vibe=chrome].selected{background:#693b637d;border-color:#f9b7ec}.vibe[data-vibe=fusion].selected{background:#3a315a8f;border-color:#caa2ff}
+@media(max-width:800px){.vibe-switch{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-grid{align-items:center}}

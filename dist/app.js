@@ -1,4 +1,4 @@
-import {MOODS,DEFAULT_MIX,compose,Player,renderWav} from './engine.js';
+import {MOODS,DEFAULT_MIX,initialMix,compose,Player,renderWav} from './engine.js';
 const $=selector=>document.querySelector(selector),$$=selector=>Array.from(document.querySelectorAll(selector));
 const copy=value=>JSON.parse(JSON.stringify(value));
 let vibe='haze',duration=150,song=null,mix=copy(DEFAULT_MIX),exporting=false,generating=false;
@@ -28,14 +28,15 @@ function showSong(){
   $('#total-time').textContent=format(song.duration);$('#seek').max=song.duration;
   $('#tempo').value=song.bpm;$('#bpm-value').textContent=song.bpm+' BPM';
   $('#warmth').value=mix.warmth;$('#warmth-value').textContent=mix.warmth+'%';$('#space').value=mix.space;$('#space-value').textContent=mix.space+'%';$('#master').value=mix.master*100;
-  $$('.mixer-track').forEach((el,i)=>{el.querySelector('input').value=mix.volumes[i]*100;el.querySelector('output').textContent=Math.round(mix.volumes[i]*100)+'%';el.querySelector('.mute').setAttribute('aria-pressed',String(mix.muted[i]));el.querySelector('.mute').textContent=mix.muted[i]?'OFF':'ON';});
+  const labels=song.palette.tracks.map(track=>[track.label,track.detail]);
+  $$('.mixer-track').forEach((el,i)=>{el.querySelector('strong').textContent=labels[i][0];el.querySelector('small').textContent=labels[i][1];el.querySelector('input').setAttribute('aria-label',labels[i][0]+' volume');el.querySelector('.mute').setAttribute('aria-label','Mute '+labels[i][0]);el.querySelector('input').value=mix.volumes[i]*100;el.querySelector('output').textContent=Math.round(mix.volumes[i]*100)+'%';el.querySelector('.mute').setAttribute('aria-pressed',String(mix.muted[i]));el.querySelector('.mute').textContent=mix.muted[i]?'OFF':'ON';});
   $('#generate-label').textContent='Another universe';$('#generate-sub').textContent='REGENERATE A BRAND NEW BEAT';
   document.body.dataset.beatSeed=song.seed;document.body.dataset.eventCount=song.events.length;
   updateControls();updateFavorite();updateTransport();
 }
 async function generate(){
   if(generating||exporting)return;generating=true;updateControls();
-  try{await player.unlock();player.stop();song=compose({vibe,duration});mix=copy(DEFAULT_MIX);mix.master=Number($('#master').value)/100;player.offset=0;await player.play(song,mix,0);showSong();status('You found '+song.name+'. Shape it, keep it, or catch another frequency.');}
+  try{await player.unlock();player.stop();song=compose({vibe,duration});mix=initialMix(vibe);mix.master=Number($('#master').value)/100;player.offset=0;await player.play(song,mix,0);showSong();status(song.name+' · '+song.palette.intro.name+'. Shape it, keep it, or catch another frequency.');}
   catch(error){console.error(error);status('Audio could not start. Tap Play to try again.');if(song)showSong();}
   finally{generating=false;updateControls();}
 }
